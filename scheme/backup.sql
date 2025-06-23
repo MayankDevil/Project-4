@@ -15,7 +15,7 @@ CREATE TABLE user (
     password VARCHAR(255) NOT NULL,
     role TINYINT(1) NOT NULL DEFAULT 0,      -- 0 = user, 1 = admin
     isActive TINYINT(1) NOT NULL DEFAULT 1,  -- 1 = yes, 0 = no
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- CATEGORIES TABLE
