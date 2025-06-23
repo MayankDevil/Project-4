@@ -1,0 +1,32 @@
+/* 
+-   Project: ""
+-   File: css/style.css
+-   Description: style or design by css
+*/
+
+.info_link
+{
+    padding: 1px 3px;
+    text-decoration: none;
+    color:var(--bs-body);
+}
+.info_link .bi
+{
+    color: var(--bs-info);
+}
+.info_link:hover
+{
+    border-bottom: 1px solid var(--bs-dark);
+}
+
+/* pagination */
+#pagination
+{
+    background: var(--bs-dark);
+}
+.page-link
+{
+    background: var(--bs-dark);
+}
+
+/* Developer: Mayank Devil | https://mayankdevil.github.io/MayankDevil */
