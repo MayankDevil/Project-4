@@ -1,6 +1,6 @@
 <!--
 -   Project: ""
--   File: frontend/user/main.php
+-   File: main.php
 -   Description: head section of webpage that contain all metadata script style or assets
 -->
 
@@ -8,7 +8,7 @@
 
     # set base url
 
-    define("BASE_URL", "http://localhost/website-5/");
+    define("BASE_URL", "http://localhost/Project-4/");
 
 ?>
 
@@ -24,16 +24,16 @@
 
 <!-- style -->
 
-<link rel="stylesheet" href="<?= BASE_URL?>frontend/assets/bootstrap.min.css">
-<link rel="stylesheet" href="<?= BASE_URL?>frontend/assets/bootstrap-icons.min.css">
-<link rel="stylesheet" href="<?= BASE_URL?>frontend/css/style.css?v=2.1">
-<link rel="stylesheet" href="<?= BASE_URL?>frontend/css/responsive.css?v=2.0">
+<link rel="stylesheet" href="<?= BASE_URL?>assets/bootstrap.min.css">
+<link rel="stylesheet" href="<?= BASE_URL?>assets/bootstrap-icons.min.css">
+<link rel="stylesheet" href="<?= BASE_URL?>css/style.css?v=2.1">
+<link rel="stylesheet" href="<?= BASE_URL?>css/responsive.css?v=2.0">
 
 
 <!-- script -->
 
-<script src="<?= BASE_URL?>frontend/assets/jquery.min.js"></script>
-<script src="<?= BASE_URL?>frontend/assets/bootstrap.bundle.min.js"></script>
-<script src="<?= BASE_URL?>frontend/js/script.js?v=1.0"></script>
+<script src="<?= BASE_URL?>assets/jquery.min.js"></script>
+<script src="<?= BASE_URL?>assets/bootstrap.bundle.min.js"></script>
+<script src="<?= BASE_URL?>js/script.js?v=1.0"></script>
 
 <!-- Developer: Mayank Devil | https://mayankdevil.github.io/MayankDevil -->
