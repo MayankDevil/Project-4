@@ -1,0 +1,31 @@
+/* ==========================================================================
+   Responsive Overrides: XL → XS (Top-Down)
+   Author: Mayank
+========================================================================== */
+
+/* Extra Extra Large (≥1400px) — skip or add if needed */
+
+/* Extra Large and smaller (≤1399.98px) */
+@media (max-width: 1400px) {
+    
+}
+
+/* Large and smaller (≤1199.98px) */
+@media (max-width: 1200px) {
+    
+}
+
+/* Medium and smaller (≤991.98px) */
+@media (max-width: 992px) {
+    
+}
+
+/* Small and smaller (≤767.98px) */
+@media (max-width: 768px) {
+    
+}
+
+/* Extra Small (≤575.98px) */
+@media (max-width: 576px) {
+    
+}
