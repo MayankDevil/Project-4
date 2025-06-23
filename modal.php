@@ -1,25 +1,24 @@
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> pop is linux </button> -->
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="alert_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-
-            <div class="modal-header">
-                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                <h1 class="modal-title fs-5" id="exampleModalLabel"> Alert </h1>
-            </div>
+            
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
             
             <div class="modal-body">
-            
-                <p> this message for you dear </p>
-
+                
+                <h4 class="modal-title" id="alert_modal_title"> Alert </h4>
+                
+                <p class="modal-text" id="alert_modal_text"> this message for you dear </p>
+                
             </div>
             
             <div class="modal-footer">
-                <button type="button" class="btn btn-info" data-bs-dismiss="modal"> close </button>
+                <button type="button" class="btn btn-sm btn-info" data-bs-dismiss="modal"> close </button>
             </div>
 
         </div>
     </div>
 </div>
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#alert_modal"> pop is linux </button> -->
