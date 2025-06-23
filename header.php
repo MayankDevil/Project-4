@@ -4,10 +4,10 @@
         <div class="container">
             <div class="row d-flex align-items-center">
                 <div class="col">
-                    <a href="#" class="brand-name h2 text-light"> Brand Name </a>
+                    <a href="#" class="brand-name h5 text-light"> Brand Name </a>
                 </div>
                 <div class="col text-end">
-                    <a href="#" class="btn btn-sm btn-outline-info"> Singin </a>
+                    <a href="#" class="btn btn-sm btn-outline-info"> Singin as User </a>
                 </div>
             </div>
         </div>
