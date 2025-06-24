@@ -8,7 +8,7 @@
 
 <head>
 
-    <?php require("main.php"); ?>
+	<?php require("main.php"); ?>
 
 </head>
 
@@ -16,8 +16,16 @@
 
 	<!-- main -->
 	<main id="root">
+
+		<?php #include("test.php"); die; ?>
+
+		<?php include("modal.php"); ?>
+
+		<?php include("header.php"); ?>
+
+		<?php include("app_section.php"); ?>
 		
-		<h1>welcome</h1>
+		<?php include("footer.php"); ?>
 
 	</main>
 
