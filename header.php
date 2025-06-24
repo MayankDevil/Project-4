@@ -7,7 +7,7 @@
                     <a href="#" class="brand-name h5 text-light"> Brand Name </a>
                 </div>
                 <div class="col text-end">
-                    <a href="#" class="btn btn-sm btn-outline-info"> Singin as User </a>
+                    <a href="staff/login.php" class="btn btn-sm btn-outline-info"> Login </a>
                 </div>
             </div>
         </div>
