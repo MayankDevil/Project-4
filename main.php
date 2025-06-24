@@ -26,7 +26,7 @@
 
 <link rel="stylesheet" href="<?= BASE_URL?>assets/bootstrap.min.css">
 <link rel="stylesheet" href="<?= BASE_URL?>assets/bootstrap-icons.min.css">
-<link rel="stylesheet" href="<?= BASE_URL?>css/style.css?v=2.1">
+<link rel="stylesheet" href="<?= BASE_URL?>css/style.css?v=2.2">
 <link rel="stylesheet" href="<?= BASE_URL?>css/responsive.css?v=2.0">
 
 
