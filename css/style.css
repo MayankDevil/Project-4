@@ -4,6 +4,25 @@
 -   Description: style or design by css
 */
 
+#search_bar::placeholder
+{
+    color: var(--bs-light);
+}
+
+/* navlink */
+
+.nav-link
+{
+    padding: 5px 10px;
+}
+.nav-link:hover
+{
+    background: var(--bs-info);
+    color:var(--bs-dark);
+}
+
+/* card */
+
 .info_link
 {
     padding: 1px 3px;
@@ -22,11 +41,11 @@
 /* pagination */
 #pagination
 {
-    background: var(--bs-dark);
+    /* background: var(--bs-dark); */
 }
 .page-link
 {
-    background: var(--bs-dark);
+    /* background: var(--bs-dark); */
 }
 
 /* Developer: Mayank Devil | https://mayankdevil.github.io/MayankDevil */

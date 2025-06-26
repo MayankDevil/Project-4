@@ -1,3 +1,12 @@
+<?php 
+
+    session_start(); 
+
+    if (isset($_SESSION["userename"]) && isset($_SESSION["user_role"]))
+    {
+        header("Location:dashboard.php");
+    }
+?>
 <!DOCTYPE html>
 <!--
 -   Project: ""
@@ -10,6 +19,41 @@
 
     <?php require("../main.php"); ?>
 
+    <?php
+    
+        /* on login button click */
+
+        if (isset($_REQUEST['login_submit'])) {
+            
+            $username = $_REQUEST['username'];
+            $password = md5($_REQUEST['password']);
+
+            if (empty($username) || empty($password)) {
+            
+                echo "<div class='alert alert-danger w-25 m-2 mx-auto'> Field is Empty </div>";
+            
+            } else {
+                
+                require("modal.php");
+
+                $result = DB_Modal::login($username, $password);
+
+                if ($result && is_array($result)) {
+
+                    $_SESSION['user_id'] = $result["user_id"];
+                    $_SESSION['username'] = $result["username"];
+                    $_SESSION['user_role'] = $result["user_role"];
+
+                    header("Location:dashboard.php");
+
+                } else {
+
+                    echo "<div class='alert alert-danger w-25 m-2 mx-auto'> Login Unvalid! </div>";
+                }
+            }
+        }   
+    ?>
+
 </head>
 
 <body>
@@ -20,7 +64,7 @@
             <div class="col"></div>
             <div class="col-lg-4 col-md-6 col-sm-8 col-12">
 
-                <form class="p-3 border rounded">
+                <form action="<?php $_SERVER['PHP_SELF']; ?>" class="p-3 border rounded">
         
                     <div class="h4 py-3"> Login Form </div>
                     
@@ -50,17 +94,17 @@
                     <div class="row">
                         <!-- submit buttom -->
                         <div class="col-md-6 col-100">
-                            <input type="button" value="Login" id="login_submit_button" class="btn btn-info px-5 py-2 w-100">
+                            <input type="submit" value="Login" name="login_submit" id="login_submit_button" class="btn btn-info px-5 py-2 w-100">
                         </div>
                         <!-- forget button -->
                         <div class="col py-3 text-end">
-                            <a href="" class="btn btn-link text-decoration-none"> forget password? </a>
+                            <a href="forget.php" class="btn btn-link text-decoration-none"> forget password? </a>
                         </div>
                     
                     </div>
 
                     <div class="w-100">
-                        <a href="signin.php" class="text-decoration-none text-secondary"> Join to SignIn Now! </a>
+                        <a href="register.php" class="text-decoration-none text-secondary"> Join to SignIn Now! </a>
                     </div>
         
                 </form>
