@@ -123,6 +123,49 @@
             }
             return "Account created successfully.";
         }
+
+        public static function get_users() {
+
+            require ("db.php");
+
+            $get_users_query = "SELECT * FROM user";
+
+            $result = mysqli_query($connect, $get_users_query);
+
+            if (!$result) {
+            
+                return mysqli_error($connect);
+            }
+            return mysqli_fetch_all($result, MYSQLI_ASSOC);
+        }
+
+        public static function countThe($request) {
+
+            require ("db.php");
+
+            $count_request = mysqli_real_escape_string($connect,$request);
+        
+            if ($count_request === 'USERS') {
+
+                $query = "SELECT count(id) AS TOTAL_USERS FROM user ORDER BY ID; ";
+            
+            } else if ($count_request === 'CATEGORIES') {
+                
+                $query = "SELECT count(id) AS TOTAL_USERS FROM categories ORDER BY ID; ";
+                
+            } else {
+
+                return "request denied!";
+            }
+
+            $result = mysqli_query( $connect, $query);
+
+            if (!$result)
+            {
+                return mysqli_error($connect);
+            }
+            return $result;
+        }
     }
 
 ?>
