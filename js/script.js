@@ -3,6 +3,7 @@
 -   File: js/script.js
 -   Description: main script
 */
+
 $(document).ready(function () {
 
     console.log('script active');
@@ -31,7 +32,7 @@ $(document).ready(function () {
         activeSection($(this))
     })
 
-    activeSection(navbar_button.eq(1)) // default section
+    activeSection(navbar_button.eq(0)) // default section
     
 })
 
