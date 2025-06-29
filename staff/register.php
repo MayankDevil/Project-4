@@ -25,7 +25,7 @@
             $passcode = md5($_REQUEST['passcode']);
 
 
-            if (empty($first_name) || empty($email) || empty($contact) || empty($username == null) || empty($passcode)) {
+            if (empty($first_name) || empty($email) || empty($contact) || empty($username) || empty($passcode)) {
 
                 echo "<div class='alert alert-danger w-25 m-2 mx-auto'> Field is Empty? </div>";
 
