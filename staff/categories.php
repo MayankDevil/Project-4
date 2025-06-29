@@ -7,7 +7,28 @@ if (!isset($_SESSION["userename"]) && !isset($_SESSION["user_role"])) {
 
 }
 
-$request_page = isset($_REQUEST['page_num']) ? intval($_REQUEST['page_num']) : 1;
+if (isset($_REQUEST['new_categories_submit'])) {
+
+    echo 'done';
+
+    $new_categories = isset($_REQUEST['new_categories']) ? $_REQUEST['new_categories'] : '';
+
+    if (empty($new_categories)) {   
+        echo "<div class='alert alert-danger w-50 m-3 mx-auto'> Please enter new categories </div>";
+    } else {
+
+        $output = DB_Modal::set_categorie($new_categories);
+
+        if ($output) {
+            echo "<div class='alert alert-success w-50 m-3 mx-auto'> Update new categories </div>";
+        } else {
+            echo "<div class='alert alert-danger w-50 m-3 mx-auto'> $output </div>";
+        }
+    }
+
+}
+
+// $request_page = isset($_REQUEST['page_num']) ? intval($_REQUEST['page_num']) : 1;
 
 ?>
 <!-- CATEGORIES SECTION -->
@@ -17,55 +38,50 @@ $request_page = isset($_REQUEST['page_num']) ? intval($_REQUEST['page_num']) : 1
         <div class="w-100 d-flex justify-content-between align-items-center">
             <h4 class="h4"> Categories </h4>
 
-            <a href="register.php" class="btn btn-sm btn-dark"> <span class="bi bi-cardlist m-1"></span> New Categories </a>
+            <form method="GET" action="<?php $_SERVER['PHP_SELF']; ?>" class="btn-group w-75">
+                <!-- <label for="" class=""> Enter First Name </label> -->
+                <input type="text" name="new_categories" id="new_categories_field" class="form-control form-control-sm w-75">
+                <button type="submit" name="new_categories_submit" class="btn btn-sm btn-dark w-25"> <span class="bi bi-card-list"></span> New Categories </button>
+            </form>
+
         </div>
 
         <table class="table w-100 m-3 mx-auto" id="user_data_table">
             <thead class="">
                 <tr>
                     <th class=''> ID</th>
-                    <th class=''> Username </th>
-                    <th class=''> First Name </th>
-                    <th class=''> Last Name </th>
-                    <th class=''> Email </th>
-                    <th class=''> Contact </th>
-                    <th class=''> Role </th>
-                    <th class=''> STATUS </th>
-                    <th class=''> EDIT </th>
+                    <th class='w-75'> TYPE </th>
+                    <th class=''> COUNT </th>
+                    <th class=''> Rename </th>
                 </tr>
             </thead>
             <tbody>
                 <?php
 
-                $total_users = DB_Modal::countThe('USERS');
+                // $total_categories = DB_Modal::countThe('CATEGORIES');
 
-                $data_count = intval($total_users['TOTAL_USERS']);
+                // $data_count = intval($total_categories['TOTAL_CATEGORIES']);
 
-                $pages = 3;
+                // $pages = 3;
 
-                $page_data_count = ceil($data_count / $pages);
+                // $page_data_count = ceil($data_count / $pages);
 
-                $control = ($request_page - 1) * $page_data_count;
+                // $control = ($request_page - 1) * $page_data_count;
 
-                $output = DB_Modal::get_users($control, $page_data_count);
+                $output = DB_Modal::get_categories();
 
                 if ($output && is_array($output)) {
                     if (count($output) > 0) {
                         foreach ($output as $row) {
 
-                            $lname = empty($row["last_name"]) ? "NULL" : $row['last_name'];
-                            $role = ($row['role']) ? "Admin" : "User";
-                            $status = ($row['isActive']) ? "<a href='grant.php?user_id=" . $row['id'] . "&action=" . $row['isActive'] . "' class='btn btn-sm btn-success'> <span class=' bi bi-check-circle mx-1'></span> ENABLE </a>" : "<a href='grant.php?user_id=" . $row['id'] . "&action=" . $row['isActive'] . "' class='btn btn-sm btn-danger'> <span class=' bi bi-x-circle mx-1'></span> DISABLE </a>";
+                            // $lname = empty($row["last_name"]) ? "NULL" : $row['last_name'];
+                            // $role = ($row['role']) ? "Admin" : "User";
+                            // $status = ($row['isActive']) ? "<a href='grant.php?user_id=" . $row['id'] . "&action=" . $row['isActive'] . "' class='btn btn-sm btn-success'> <span class=' bi bi-check-circle mx-1'></span> ENABLE </a>" : "<a href='grant.php?user_id=" . $row['id'] . "&action=" . $row['isActive'] . "' class='btn btn-sm btn-danger'> <span class=' bi bi-x-circle mx-1'></span> DISABLE </a>";
 
                             echo "<tr class=''>";
                             echo "<td class=''>" . $row['id'] . "</td>";
                             echo "<td class=''>" . $row['name'] . "</td>";
-                            echo "<td class=''>" . $row['first_name'] . "</td>";
-                            echo "<td class=''>" . $lname . "</td>";
-                            echo "<td class=''>" . $row['email'] . "</td>";
-                            echo "<td class=''>" . $row['contact_number'] . "</td>";
-                            echo "<td class=''>" . $role . "</td>";
-                            echo "<td class=''>" . $status . "</td>";
+                            echo "<td class=''>" . $row['name'] . "</td>";
                             echo "<td class=''> <a href='#" . $row['id'] . "' class='btn btn-sm btn-dark bi bi-pencil-square'></a> </td>";
                             echo "</tr>";
                         }
@@ -73,7 +89,7 @@ $request_page = isset($_REQUEST['page_num']) ? intval($_REQUEST['page_num']) : 1
                         echo "<div class='alert alert-warning w-50 m-3 mx-auto'> user table is empty </div>";
                     }
                 } else {
-                    echo "<div class='alert alert-danger w-50 m-3 mx-auto'> Query Problem Please checkout! </div>";
+                    echo "<div class='alert alert-danger w-50 m-3 mx-auto'> $output </div>";
                 }
 
                 ?>
@@ -81,45 +97,45 @@ $request_page = isset($_REQUEST['page_num']) ? intval($_REQUEST['page_num']) : 1
         </table>
 
         <!-- pagination -->
-        <nav id="pagination">
+        <!-- <nav id="pagination">
             <ul class="pagination">
                 <?php
 
-                    /* previous page */
-                    if ($request_page > 1) {
+                    // /* previous page */
+                    // if ($request_page > 1) {
 
-                        echo "<li class='page-item'>
-                                <a class='page-link' href='?page_num=" . ($request_page - 1) . "' aria-label='Previous'>
-                                    <span class='bi bi-chevron-double-left'></span>
-                                </a>
-                            </li>";
-                    }
+                    //     echo "<li class='page-item'>
+                    //             <a class='page-link' href='?page_num=" . ($request_page - 1) . "' aria-label='Previous'>
+                    //                 <span class='bi bi-chevron-double-left'></span>
+                    //             </a>
+                    //         </li>";
+                    // }
 
-                    /* numbers page */
+                    // /* numbers page */
 
-                    for ($i = 1; $i <= $pages; $i++) {
+                    // for ($i = 1; $i <= $pages; $i++) {
 
-                        if ($request_page == $i) {
-                            echo "<li class='page-item active'><a class='page-link' href='?page_num=$i'>$i</a></li>";
-                        } else {
-                            echo "<li class='page-item'><a class='page-link' href='?page_num=$i'>$i</a></li>";
-                        }
-                    }
+                    //     if ($request_page == $i) {
+                    //         echo "<li class='page-item active'><a class='page-link' href='?page_num=$i'>$i</a></li>";
+                    //     } else {
+                    //         echo "<li class='page-item'><a class='page-link' href='?page_num=$i'>$i</a></li>";
+                    //     }
+                    // }
 
-                    /* next page */
+                    // /* next page */
 
-                    if ($request_page < $pages) {
+                    // if ($request_page < $pages) {
 
-                        echo "<li class='page-item'>
-                                <a class='page-link' href='?page_num=" . ($request_page + 1) . "' aria-label='Next'>
-                                    <span class='bi bi-chevron-double-right'></span>
-                                </a>
-                            </li>";
-                    }
+                    //     echo "<li class='page-item'>
+                    //             <a class='page-link' href='?page_num=" . ($request_page + 1) . "' aria-label='Next'>
+                    //                 <span class='bi bi-chevron-double-right'></span>
+                    //             </a>
+                    //         </li>";
+                    // }
                     
                 ?>
             </ul>
-        </nav>
+        </nav> -->
 
     </div>
 </section>
