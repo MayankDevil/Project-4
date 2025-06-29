@@ -1,99 +1,104 @@
 <?php
 
-    class DB_Modal {
+class DB_Modal
+{
+    public static function is_password_strong($password)
+    {
 
-        public static function is_password_strong ($password) {
-        
-            $isLength = strlen($password) >= 8;
-            $isUpperCase = preg_match("@[A-Z]@", $password);
-            $isLowerCase = preg_match("@[a-z]@", $password);
-            $isDigitOrSymbol = preg_match("@[\d\W]@", $password);
+        $isLength = strlen($password) >= 8;
+        $isUpperCase = preg_match("@[A-Z]@", $password);
+        $isLowerCase = preg_match("@[a-z]@", $password);
+        $isDigitOrSymbol = preg_match("@[\d\W]@", $password);
 
 
-            if ($isLength && $isUpperCase && $isLowerCase && $isDigitOrSymbol) 
-            {    
-                return true;        
-            } 
-            else 
-            {
-                return false;
-            }
+        if ($isLength && $isUpperCase && $isLowerCase && $isDigitOrSymbol) {
+            return true;
+        } else {
+            return false;
         }
+    }
 
-        public static function forget($first_name, $email) {
+    public static function forget($first_name, $email)
+    {
 
-            require ("db.php");
+        require("db.php");
 
-            $person = mysqli_real_escape_string($connect, $first_name);
-            $to = mysqli_real_escape_string($connect, $email);
+        $person = mysqli_real_escape_string($connect, $first_name);
+        $to = mysqli_real_escape_string($connect, $email);
 
-            $forget_query = "SELECT name AS USER, password AS PASS FROM user Where first_name='$first_name' AND email='$email' ";
+        $forget_query = "SELECT name AS USER, password AS PASS FROM user Where first_name='$first_name' AND email='$email' ";
 
-            $result = mysqli_query($connect, $forget_query);
+        $result = mysqli_query($connect, $forget_query);
 
-            if (mysqli_num_rows($result) > 0) {
+        if (mysqli_num_rows($result) > 0) {
 
-                $output = mysqli_fetch_assoc($result);
-            
-                // Set headers
-                $headers = "Content-Type: text/html; charset=UTF-8\r\n";
-                $message = "Dear " . $first_name . ", \n Your ( USER= ". $output['USER'] . " AND PASS= " . $output['PASS'] . " ) \n Please don't share with any one.";
-                $subject = "Forget Detail";
+            $output = mysqli_fetch_assoc($result);
 
-                // Send the email
-                if (mail($to, $subject, $message, $headers)) {
-                
-                    return true;
-                
-                } else {
+            // Set headers
+            $headers = "Content-Type: text/html; charset=UTF-8\r\n";
+            $message = "Dear " . $first_name . ", \n Your ( USER= " . $output['USER'] . " AND PASS= " . $output['PASS'] . " ) \n Please don't share with any one.";
+            $subject = "Forget Detail";
 
-                    return false;
-                }
+            // Send the email
+            if (mail($to, $subject, $message, $headers)) {
+
+                return true;
+
             } else {
 
                 return false;
             }
+        } else {
+
+            return false;
         }
+    }
 
-        public static function login($username, $password) {
+    public static function login($username, $password)
+    {
 
-            include("db.php");
-            
-            $user = mysqli_real_escape_string($connect, $username);
-            $pass = mysqli_real_escape_string($connect, $password);
+        include("db.php");
 
-            $login_query = "SELECT id AS user_id, name AS username, role AS user_role FROM user WHERE name='$user' AND password='$pass' ";
+        $user = mysqli_real_escape_string($connect, $username);
+        $pass = mysqli_real_escape_string($connect, $password);
 
-            $result = mysqli_query($connect, $login_query);
+        $login_query = "SELECT id AS user_id, name AS username, role AS user_role, isActive FROM user WHERE name='$user' AND password='$pass' ";
 
-            if (!$result)
-            {
-                return mysqli_error($connect);
-            }
-            return mysqli_fetch_assoc($result);
+        $result = mysqli_query($connect, $login_query);
+
+        $row = mysqli_fetch_assoc($result);
+
+        if (!$row) {
+            return "Invalid username or password.";
+        } else if (!$row['isActive']) {
+            return "Permission Denied!";
+        } else {
+            return $row;
         }
+    }
 
-        public static function register($first_name, $last_name, $email, $contact, $role, $username, $password) {
-         
-            include("db.php");
+    public static function register($first_name, $last_name, $email, $contact, $role, $username, $password)
+    {
 
-            $activate = $role ? 0 : 1;
+        include("db.php");
 
-            /* escape input values */
-            $first_name = mysqli_real_escape_string($connect, $first_name);
-            $email = mysqli_real_escape_string($connect, $email);
-            $contact = mysqli_real_escape_string($connect, $contact);
-            $username = mysqli_real_escape_string($connect, $username);
-            $password = mysqli_real_escape_string($connect, $password); // recommended: use password_hash
-            $role = (int)$role;
+        $activate = $role ? 0 : 1;
 
-            /* handle optional last name */
-            $last_name_sql = ($last_name !== null && $last_name !== '')
-                ? "'" . mysqli_real_escape_string($connect, $last_name) . "'"
-                : "NULL";
+        /* escape input values */
+        $first_name = mysqli_real_escape_string($connect, $first_name);
+        $email = mysqli_real_escape_string($connect, $email);
+        $contact = mysqli_real_escape_string($connect, $contact);
+        $username = mysqli_real_escape_string($connect, $username);
+        $password = mysqli_real_escape_string($connect, $password); // recommended: use password_hash
+        $role = (int) $role;
 
-            /* insert query */
-            $insert_query = "INSERT INTO user (
+        /* handle optional last name */
+        $last_name_sql = ($last_name !== null && $last_name !== '')
+            ? "'" . mysqli_real_escape_string($connect, $last_name) . "'"
+            : "NULL";
+
+        /* insert query */
+        $insert_query = "INSERT INTO user (
                 first_name,
                 last_name,
                 name,
@@ -113,59 +118,86 @@
                 $activate
             )";
 
-            $result = mysqli_query($connect, $insert_query);
+        $result = mysqli_query($connect, $insert_query);
 
-            mysqli_close($connect);
+        mysqli_close($connect);
 
-            if (!$result) 
-            {
-                return "Error: " . mysqli_error($connect);
-            }
-            return "Account created successfully.";
+        if (!$result) {
+            return "Error: " . mysqli_error($connect);
         }
-
-        public static function get_users() {
-
-            require ("db.php");
-
-            $get_users_query = "SELECT * FROM user";
-
-            $result = mysqli_query($connect, $get_users_query);
-
-            if (!$result) {
-            
-                return mysqli_error($connect);
-            }
-            return mysqli_fetch_all($result, MYSQLI_ASSOC);
-        }
-
-        public static function countThe($request) {
-
-            require ("db.php");
-
-            $count_request = mysqli_real_escape_string($connect,$request);
-        
-            if ($count_request === 'USERS') {
-
-                $query = "SELECT count(id) AS TOTAL_USERS FROM user ORDER BY ID; ";
-            
-            } else if ($count_request === 'CATEGORIES') {
-                
-                $query = "SELECT count(id) AS TOTAL_USERS FROM categories ORDER BY ID; ";
-                
-            } else {
-
-                return "request denied!";
-            }
-
-            $result = mysqli_query( $connect, $query);
-
-            if (!$result)
-            {
-                return mysqli_error($connect);
-            }
-            return $result;
-        }
+        return "Account created successfully.";
     }
 
+    public static function get_users($OFFSET, $LIMIT)
+    {
+
+        require("db.php");
+
+        $get_users_query = "SELECT * FROM user LIMIT $OFFSET, $LIMIT";
+
+        $result = mysqli_query($connect, $get_users_query);
+
+        if (!$result) {
+
+            return mysqli_error($connect);
+        }
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+
+    public static function countThe($request)
+    {
+
+        require("db.php");
+
+        $count_request = mysqli_real_escape_string($connect, $request);
+
+        if ($count_request === 'USERS') {
+
+            $query = "SELECT count(id) AS TOTAL_USERS FROM user";
+
+        } else if ($count_request === 'CATEGORIES') {
+
+            $query = "SELECT count(id) AS TOTAL_CATEORIES FROM categories";
+
+        } else {
+
+            return "request denied!";
+        }
+
+        $result = mysqli_query($connect, $query);
+
+        if (!$result) {
+            return mysqli_error($connect);
+        }
+
+        return mysqli_fetch_assoc($result);
+    }
+    public static function grant($USER, $ACTION)
+    {
+        require("db.php");
+
+        $userid = intval($USER);
+        $action = intval($ACTION);
+
+        if ($action !== 0 || $action !== 1) {
+            return 0;
+        }
+        if ($action === 0) {
+            $action = 1;
+        } else {
+            $action = 0;
+        }
+
+        $query = "UPDATE user SET isActive = $action WHERE id = $userid";
+        $result = mysqli_query($connect, $query);
+
+        if (!$result) {
+            return 0;
+        }
+
+        return mysqli_affected_rows($connect);
+    }
+}
+
+/* Developer: Mayank Devil | https://mayankdevil.github.io/MayankDevil */
 ?>

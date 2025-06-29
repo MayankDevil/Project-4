@@ -45,10 +45,12 @@
                     $_SESSION['user_role'] = $result["user_role"];
 
                     header("Location:dashboard.php");
+                    
+                    exit;
 
-                } else {
+                } else if (is_string($result)) {
 
-                    echo "<div class='alert alert-danger w-25 m-2 mx-auto'> Login Unvalid! </div>";
+                    echo "<div class='alert alert-danger w-25 m-2 mx-auto'> $result </div>";
                 }
             }
         }   

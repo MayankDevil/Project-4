@@ -34,6 +34,6 @@
 
 <script src="<?= BASE_URL?>assets/jquery.min.js"></script>
 <script src="<?= BASE_URL?>assets/bootstrap.bundle.min.js"></script>
-<script src="<?= BASE_URL?>js/script.js?v=1.0"></script>
+<script src="<?= BASE_URL?>js/script.js?v=1.1"></script>
 
 <!-- Developer: Mayank Devil | https://mayankdevil.github.io/MayankDevil -->
