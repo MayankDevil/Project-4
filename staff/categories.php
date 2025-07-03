@@ -1,8 +1,8 @@
 <?php
 
-if (!isset($_SESSION["userename"]) && !isset($_SESSION["user_role"])) {
+if (!isset($_SESSION["userename"]) && !isset($_SESSION["user_id"])) {
  
-    header("Location:login.php");
+    header("Location:logout.php");
     exit;
 
 }
