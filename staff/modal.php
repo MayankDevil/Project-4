@@ -138,15 +138,99 @@ class DB_Modal
         $result = mysqli_query($connect, $get_users_query);
 
         if (!$result) {
+            return mysqli_error($connect);
+        } else if (mysqli_affected_rows($connect) > 0) {
+            return mysqli_fetch_all($result, MYSQLI_ASSOC);
+        } else {
+            return 'Categories table is empty!';
+        }
+    }
+
+    public static function get_categories()
+    {
+
+        require("db.php");
+
+        $get_users_query = "SELECT * FROM categories";
+
+        $result = mysqli_query($connect, $get_users_query);
+
+        if (!$result) {
 
             return mysqli_error($connect);
+        } else if (mysqli_affected_rows($connect) > 0) {
+            return mysqli_fetch_all($result, MYSQLI_ASSOC);
+        } else {
+            return 'Categories table is empty!';
         }
-        return mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+
+    public static function set_post($title, $description, $image, $author_id, $categorie_id) {
+        
+        require('db.php');
+
+        $post_title = mysqli_real_escape_string($connect,$title);
+        $post_description = mysqli_real_escape_string($connect, $description);
+        $post_image = mysqli_real_escape_string($connect, $image);
+
+
+        $userid = intval($author_id);
+        $categorie_id = intval($categorie_id);
+
+        if (($userid == 0) || ($categorie_id == 0)) {
+            return 'INVALID ID FOUNDED';
+        }
+
+        $set_post_query = "INSERT INTO post( title, description, image, author_id, category_id ) values ('$post_title','$post_description','$post_image',$userid,$categorie_id) ";
+
+        $result = mysqli_query($connect, $set_post_query);
+
+        if (!$result) {
+            return mysqli_error($connect);
+        }  else {
+            return 'Successfully Posted!';
+        }
+    }
+
+    public static function get_posts($OFFSET, $LIMIT)
+    {
+
+        require("db.php");
+
+        $get_users_query = "SELECT * FROM post LIMIT $OFFSET, $LIMIT";
+
+        $result = mysqli_query($connect, $get_users_query);
+
+        if (!$result) {
+            return mysqli_error($connect);
+        } else if (mysqli_affected_rows($connect) > 0) {
+            return mysqli_fetch_all($result, MYSQLI_ASSOC);
+        } else {
+            return 'Post table is empty!';
+        }
+    }
+
+    public static function set_categorie($type) {
+
+        include('db.php');
+
+        $new_type = mysqli_real_escape_string($connect, $type);
+
+        $new_categroies_query = "INSERT into categories(name) value('$new_type')";
+
+        $result = mysqli_query($connect, $new_categroies_query);
+
+        if (!$result) {
+            return mysqli_error($connect);  
+        }
+
+        if (mysqli_affected_rows($connect) > 0) {
+            return true;
+        }
     }
 
     public static function countThe($request)
     {
-
         require("db.php");
 
         $count_request = mysqli_real_escape_string($connect, $request);
@@ -158,6 +242,10 @@ class DB_Modal
         } else if ($count_request === 'CATEGORIES') {
 
             $query = "SELECT count(id) AS TOTAL_CATEORIES FROM categories";
+
+        } else if ($count_request === 'POSTS') {
+
+            $query = "SELECT count(id) AS TOTAL_POSTS FROM post";
 
         } else {
 
