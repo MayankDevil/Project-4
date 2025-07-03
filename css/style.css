@@ -4,21 +4,131 @@
 -   Description: style or design by css
 */
 
+:root {
+    --color1:#6F1E51;
+    --color2:#b33939;
+    --color3:#eb3b5a;
+    --color4:#dcdde1;
+    --color5:#f5f6fa;
+}
+
+#square_box_container {
+    overflow: hidden;
+    position: relative;
+    z-index: -11;
+    height: 300px;
+    width: 100%;
+    background: var(--color1);
+}
+.square {
+    aspect-ratio: 1/1;
+}
+#square_one {
+    position:absolute;
+    z-index: -13;
+    top: -300px;
+    left: -100px;
+    height: 800px;
+    width: 800px;
+    background: linear-gradient(to right, var(--color2), var(--color3));
+    border-radius: 40px;
+    opacity: 0.8;
+    transform: rotate(45deg);
+}
+#square_two {
+    position:absolute;
+    z-index: -14;
+    top: 100px;
+    right:-50px ;
+    height: 400px;
+    width: 400px;
+    background: linear-gradient(to bottom, var(--color2), var(--color3));
+    border-radius: 30px;
+    opacity: 0.7;
+    transform: rotate(45deg);
+}
+#square_three {
+    position:absolute;
+    z-index: -15;
+    top: 80px;
+    right: 250px ;
+    height: 250px;
+    width: 250px;
+    background: linear-gradient(to bottom, var(--color2), var(--color3));
+    border-radius: 30px;
+    opacity: 0.4;
+    transform: rotate(45deg);
+}
+
+.bgs-white {
+    background: var(--color4);
+}
+.bgs-purple {
+    background: var(--color1);
+}
+.bgs-light {
+    background: var(--color5);
+}
+.bgs-brown {
+    background: var(--color2);
+}
+.bgs-red {
+    background: var(--color3);
+}
+
+.bgs-shade {
+    background: linear-gradient(100deg, var(--color2), var(--color3));
+}
+
+.texts-white {
+    color: var(--color4);
+}
+.texts-purple {
+    color: var(--color1);
+}
+.texts-light {
+    color: var(--color5);
+}
+.texts-brown {
+    color: var(--color2);
+}
+.texts-red {
+    color: var(--color3);
+}
+
+.btn-main {
+    background: var(--color3);
+}
+.btn-main:hover {
+    background: var(--color3);
+}
+
+
+.banner
+{
+    padding: 3rem 0;
+    background: url('../image/header-banner.png') fixed;
+    background-size: contain;
+}
+
 #search_bar::placeholder
 {
-    color: var(--bs-light);
+    color: var(--color1);
 }
 
 /* navlink */
 
-.nav-link
+#navbar .link
 {
-    padding: 5px 10px;
+    margin: 5px auto;
+    padding:2px 10px;
+    color:var(--color3);
+    border-color: var(--color3);
 }
-.nav-link:hover
+#navbar .link:hover
 {
-    background: var(--bs-info);
-    color:var(--bs-dark);
+    color:var(--color5);
+    background: var(--color3);
 }
 
 /* card */
@@ -31,11 +141,11 @@
 }
 .info_link .bi
 {
-    color: var(--bs-info);
+    color: var(--color3);
 }
 .info_link:hover
 {
-    border-bottom: 1px solid var(--bs-dark);
+    border-bottom: 1px solid var(--color3);
 }
 
 /* pagination */
@@ -46,6 +156,12 @@
 .page-link
 {
     /* background: var(--bs-dark); */
+}
+
+#new_post_form #post_description
+{
+    resize: vertical;
+    height: 150px;
 }
 
 /* Developer: Mayank Devil | https://mayankdevil.github.io/MayankDevil */
