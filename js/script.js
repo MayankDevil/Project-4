@@ -25,7 +25,7 @@ $(document).ready(function () {
 
     /* on click button call activesection pass this */
 
-    let navbar_button = $("#dash_navbar button")
+    let navbar_button = $("#navbar button")
 
     navbar_button.on("click", function () {
 
