@@ -1,14 +1,13 @@
 <?php
 
-session_start();
+	session_start();
 
-if (!isset($_SESSION["userename"]) && !isset($_SESSION["user_role"])) {
-	header("Location:login.php");
-	exit;
-} else {
+	if (!isset($_SESSION["userename"]) && !isset($_SESSION["user_role"])) {
 
-	include("modal.php");
-}
+		header("Location:login.php");
+		exit;
+	}
+	require("modal.php");
 
 ?>
 <!DOCTYPE html>
@@ -25,31 +24,17 @@ if (!isset($_SESSION["userename"]) && !isset($_SESSION["user_role"])) {
 
 </head>
 
-<body>
-
+<body class="bgs-white">
 	<!-- main -->
 	<main id="root">
 
-		<?php #include("test.php"); die; ?>
-
-		<?php include("header.php"); ?>
+		<?php include("../header.php"); ?>
 
 		<div class="container-fluid">
 			<div class="container">
 
-				<!-- POST SECTION -->
-				<section class="collapse" id="post_section">
-					<div class="row">
-						<div class="col">
+				<?php include("posts.php"); ?>
 
-							<h4 class="h4"> ALL POST DATA </h4>
-
-							<a href="new_post.php" class="btn btn-info"> New Post <span class="bi bi-file-txt"></span>
-							</a>
-
-						</div>
-					</div>
-				</section>
 				<?php include("categories.php"); ?>
 				
 				<?php include("users.php"); ?>
