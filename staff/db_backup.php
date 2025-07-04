@@ -100,12 +100,10 @@ if (!file_exists($folder)) {
 
 # save data as source in json file
 
-if (!file_put_contents($source, $data)) {
+if (file_put_contents($source, $data)) {
 
-    echo "";
+    mysqli_close($connect);
 }
-mysqli_close($connect);
-
 include('../main.php');
 
 header('Location:'.BASE_URL);
@@ -113,3 +111,5 @@ header('Location:'.BASE_URL);
 exit('backup store successfully!');
 
 /* Developer: Mayank Devil | https://mayankdevil.github.io/MayankDevil */
+
+?>
