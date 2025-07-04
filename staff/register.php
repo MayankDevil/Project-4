@@ -31,11 +31,8 @@
 
             } else {
 
-                if ($last_name == '') {
-
-                    $last_name = null;
-                }
-
+                if ($last_name == '') $last_name = null;
+    
                 require_once("modal.php");
 
                 if (DB_Modal::is_password_strong($passcode)) {
@@ -44,14 +41,6 @@
 
                     echo "<div class='alert alert-success w-25 m-2 mx-auto'> " . $result . " </div>";
 
-                    // if (mysqli_num_rows($result) > 0) 
-                    // {
-                    // } 
-                    // else 
-                    // {
-                    //     echo "<div class='alert alert-danger w-25 m-2 mx-auto'> ERROR Data is Not Inserted </div>";
-                    // }
-                    
                 } else {
                     
                     echo "<div class='alert alert-danger w-25 m-2 mx-auto'> Password is Not Strong? </div>";
