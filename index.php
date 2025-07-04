@@ -1,3 +1,8 @@
+<?php
+
+	session_start(); 
+
+?>
 <!DOCTYPE html>
 <!--
 -   Project: ""
@@ -8,7 +13,7 @@
 
 <head>
 
-	<?php require("main.php"); ?>
+	<?php include ("main.php"); ?>
 
 </head>
 
