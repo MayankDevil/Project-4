@@ -24,7 +24,7 @@
 
 		<?php #include("test.php"); die; ?>
 
-		<?php include("modal.php"); ?>
+		<?php include("popup.php"); ?>
 
 		<?php include("header.php"); ?>
 
