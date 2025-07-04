@@ -54,6 +54,13 @@ foreach ($db_tables as $table) {
 
 $folder = '../backup/';
 
+# make directory if folder is notexist
+
+if (!file_exists($folder)) {
+
+    mkdir($folder, 0777, true);
+}
+
 $source = $folder . 'data.json';
 
 if (file_exists($source)) {
@@ -89,13 +96,6 @@ if (file_exists($source)) {
         'message' => date('Y-m-d-H-i-s') . '_' . $_SESSION['username'],
         'data' => $database
     ), JSON_PRETTY_PRINT);
-}
-
-# make directory if folder is notexist
-
-if (!file_exists($folder)) {
-
-    mkdir($folder, 0777, true);
 }
 
 # save data as source in json file
