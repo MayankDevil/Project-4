@@ -46,6 +46,8 @@
     <div class="container-fluid bg-light">
         <div class="container">
             <nav class="" id="navbar">
+
+                <a href="<?= BASE_URL ?>" class="btn btn-sm btn-outline-secondary link" id=""> Home </a>
                         
                 <button class="btn btn-sm btn-outline-secondary link"> Post </button>
 
@@ -57,6 +59,7 @@
 
                 <button class="btn btn-sm btn-outline-secondary link"> Categorie </button>
                 <button class="btn btn-sm btn-outline-secondary link"> User </button>
+                <a href="<?= BASE_URL ?>staff/db_backup.php" class="btn btn-sm btn-outline-secondary link" title="on click save database backup" id="backup_btn"> Backup </a>
 
                 <?php } ?>
 
