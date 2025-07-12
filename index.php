@@ -1,19 +1,17 @@
-<?php
-
-	session_start(); 
-
-?>
 <!DOCTYPE html>
 <!--
 -   Project: ""
 -   File: frontend/user/app.php
 -   Description: application 
 -->
+
+<?php session_start(); ?>
+
 <html lang="en">
 
 <head>
 
-	<?php include ("main.php"); ?>
+	<?php include("main.php"); ?>
 
 </head>
 
@@ -22,14 +20,20 @@
 	<!-- main -->
 	<main id="root">
 
-		<?php #include("test.php"); die; ?>
-
 		<?php include("popup.php"); ?>
 
 		<?php include("header.php"); ?>
 
-		<?php include("app_section.php"); ?>
-		
+		<section class="container-fluid bgs-white">
+			<div class="container">
+				<div class="row">
+
+					<?php include("app.php"); ?>
+
+				</div>
+			</div>
+		</section>
+
 		<?php include("footer.php"); ?>
 
 	</main>
