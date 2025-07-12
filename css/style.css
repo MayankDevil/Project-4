@@ -78,7 +78,7 @@
 }
 
 .bgs-shade {
-    background: linear-gradient(100deg, var(--color2), var(--color3));
+    background:linear-gradient(100deg, var(--color1), var(--color2), var(--color3));
 }
 
 .texts-white {
@@ -135,6 +135,11 @@
 .postwoman
 {
     background: url('../image/postwoman.jpg') fixed;
+    background-size: contain;
+}
+.pattern
+{
+    background: url('../image/pattern.jpg');
     background-size: contain;
 }
 
@@ -201,7 +206,6 @@
     color:var(--color3);
     border-color: var(--color3);
 }
-
 
 /* POST FORM */
 
