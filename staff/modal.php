@@ -180,15 +180,15 @@ class DB_Modal
         }
 
         $query = "INSERT 
-                    INTO 
-                        post( title, description, image, author_id, category_id ) 
-                    VALUES (
-                        '$post_title', 
-                        '$post_description', 
-                        '$post_image', 
-                        $userid, 
-                        $categorie_id
-                    )";
+            INTO 
+                post( title, description, image, author_id, category_id ) 
+            VALUES (
+                '$post_title', 
+                '$post_description', 
+                '$post_image', 
+                $userid, 
+                $categorie_id
+            )";
 
         $result = mysqli_query($connect, $query);
 
@@ -327,17 +327,17 @@ class DB_Modal
         require("db.php");
 
         $query = "SELECT 
-                    categories.id AS category_id,
-                    categories.name AS category_type,
-                    COUNT(post.id) AS category_count
-                FROM 
-                    categories
-                LEFT JOIN 
-                    post ON post.category_id = categories.id
-                GROUP BY 
-                    categories.id, categories.name
-                ORDER BY 
-                    category_count DESC";
+                categories.id AS category_id,
+                categories.name AS category_type,
+                COUNT(post.id) AS category_count
+            FROM 
+                categories
+            LEFT JOIN 
+                post ON post.category_id = categories.id
+            GROUP BY 
+                categories.id, categories.name
+            ORDER BY 
+                category_count DESC";
 
         $result = mysqli_query($connect, $query);
 
@@ -397,11 +397,11 @@ class DB_Modal
         }
 
         $query = "UPDATE 
-                    user 
-                SET 
-                    isActive = $action 
-                WHERE 
-                    id = $userid";
+                user 
+            SET 
+                isActive = $action 
+            WHERE 
+                id = $userid";
 
         $result = mysqli_query($connect, $query);
 
