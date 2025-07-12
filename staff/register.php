@@ -4,13 +4,22 @@
 -   File: staff/register.php
 -   Description: register new user in database 
 -->
-<html lang="en">
 
+<?php session_start(); ?>
+
+<html lang="en">
+    
 <head>
 
     <?php require("../main.php"); ?>
 
     <?php
+
+        if (isset($_SESSION['username']) && isset($_SESSION['user_id'])) {
+
+            header('Location:'. BASE_URL);
+            exit('USER IS LOGIN!');
+        }
 
         /* on signin button submit */
 
@@ -52,88 +61,78 @@
 
 </head>
 
-<body>
+<body class="bgs-white">
 
-    <!-- form frame -->
-    <div class="container-fluid">
-
+    <div class="container">
         <div class="row">
 
-            <div class="col-lg-6 col-md-8 col-12 offset-lg-3 offset-md-2 offset-0">
+            <div class="col d-grid align-items-center">
 
-                <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" class="border my-5 p-3">
-                    <!-- form title -->
-                    <div class="h3 py-2"> Singin Form </div>
+                <div class="" id="">
+                    <div class="h3 py-2"> Registeration Form </div>
+                    <p class="text-muted"> For Security Purpose, if join as admin your default account is disable </p>
+                    <p>  Go back to <a href="<?=BASE_URL?>" class="badge pill-rounded bgs-brown text-decoration-none"> Home </a> page </p>
+                    
+                </div>
+
+            </div>
+
+            <div class="col">
+
+                <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" class="shadow p-3 pattern" id="register_form">
                     <!-- -->
-                    <div class="form-group my-3">
+                    <div class="form-group mb-3">
                         <label for="" class="py-2"> Enter First Name </label>
-                        <input type="text" name="first_name" id="" class="form-control my-2">
-                        <div class="text-muted"> Your original name in text keep private </div>
+                        <input type="text" name="first_name" id="" class="form-control my-2" placeholder="Your original name in text keep private">
                     </div>
                     <!--  -->
                     <div class="form-group my-3">
                         <label for="" class="py-2"> Enter Last Name </label>
-                        <input type="text" name="last_name" id="" class="form-control my-2">
-                        <div class="text-muted"> Your original name in text keep private </div>
+                        <input type="text" name="last_name" id="" class="form-control my-2" placeholder="Your original name in text keep private">
                     </div>
                     <!--  -->
                     <div class="form-group my-3">
                         <label for="" class="py-2"> Enter Username </label>
-                        <input type="text" name="username" id="" class="form-control my-2">
-                        <div class="text-muted"> Public name show in website only text </div>
+                        <input type="text" name="username" id="" class="form-control my-2" placeholder="Public name show in website only text">
                     </div>
                     <!--  -->
                     <div class="form-group my-3">
                         <label for="" class="py-2"> Enter Passwrod </label>
-                        <input type="password" name="passcode" id="" class="form-control my-2">
-                        <div class="text-muted"> Used number, letter, symbols for strong password </div>
+                        <input type="password" name="passcode" id="" class="form-control my-2" placeholder="Used number, letter, symbols for strong password">
                     </div>
                     <!--  -->
                     <div class="form-group my-3">
                         <label for="" class="py-2"> Enter Email-ID </label>
-                        <input type="email" name="email" id="" class="form-control my-2">
-                        <div class="text-muted"> Used active personal email </div>
+                        <input type="email" name="email" id="" class="form-control my-2" placeholder="active personal email">
                     </div>
                     <!-- contact field for number data -->
                     <div class="form-group my-3">
                         <label for="" class="py-2"> Enter Contact </label>
-                        <input type="tel" name="contact" id="" class="form-control my-2">
-                        <div class="text-muted"> Used active recharged number to get OPT </div>
+                        <input type="tel" name="contact" id="" class="form-control my-2" placeholder="active recharged number to get OPT">
                     </div>
                     <!-- caption for secure -->
-                    <div class="form-group my-5">
-                        <div class="d-flex">
-                            <label for="" class="py-2  w-50"> Join As </label>
-                            <select name="role" class="form-select" aria-label="Default select example">
-                                <option value="0" selected>User</option>
-                                <option value="1">Admin</option>
-                            </select>
-                        </div>
-                        <div class="text-muted"> For Security, if join as admin your default account is disable </div>
+                    <div class="form-group my-3 d-flex">
+                        <label for="" class="py-2  w-50"> Join As </label>
+                        <select name="role" class="form-select" aria-label="Default select example">
+                            <option value="0" selected>User</option>
+                            <option value="1">Admin</option>
+                        </select>
                     </div>
 
                     <!-- button group -->
-                    <div class="btn-group w-50 py-2">
+                    <div class=" w-50 py-2">
                         <!-- submit button to send data -->
-                        <input type="submit" value="Submit" name="signin_submit" class="btn btn-dark">
+                        <input type="submit" value="Submit" name="signin_submit" class="btn btn-sm btn-dark">
                         <!-- reset button to clear data -->
-                        <input type="reset" value="Clear All" class="btn btn-outline-dark">
+                        <input type="reset" value="Clear All" class="btn btn-sm btn-outline-dark">
 
                     </div>
 
                 </form>
 
             </div>
-
         </div>
-
-        <div class="row mx-auto d-block w-lg-100 w-md-75 w-50">
-
-        </div>
-
     </div>
-
-    <?php include("../footer.php"); ?>
 
 </body>
 
