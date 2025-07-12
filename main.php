@@ -26,7 +26,7 @@
 
 <link rel="stylesheet" href="<?= BASE_URL?>assets/bootstrap.min.css">
 <link rel="stylesheet" href="<?= BASE_URL?>assets/bootstrap-icons.min.css">
-<link rel="stylesheet" href="<?= BASE_URL?>css/style.css?v=2.3">
+<link rel="stylesheet" href="<?= BASE_URL?>css/style.css?v=2.6">
 <link rel="stylesheet" href="<?= BASE_URL?>css/responsive.css?v=2.0">
 
 
@@ -34,6 +34,6 @@
 
 <script src="<?= BASE_URL?>assets/jquery.min.js"></script>
 <script src="<?= BASE_URL?>assets/bootstrap.bundle.min.js"></script>
-<script src="<?= BASE_URL?>js/script.js?v=1.2"></script>
+<script src="<?= BASE_URL?>js/script.js?v=1.4"></script>
 
 <!-- Developer: Mayank Devil | https://mayankdevil.github.io/MayankDevil -->
