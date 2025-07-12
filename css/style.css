@@ -5,8 +5,9 @@
 */
 
 :root {
-    --color1:#6F1E51;
+    --color1:#33203e;
     --color2:#b33939;
+    --color2:#b73546;
     --color3:#eb3b5a;
     --color4:#dcdde1;
     --color5:#f5f6fa;
@@ -96,18 +97,44 @@
     color: var(--color3);
 }
 
+.borders-red{
+    border-color:var(--color3);
+}
+
 .btn-main {
-    background: var(--color3);
+    color: var(--color3);
+    background:transparent;
+    border: 1px solid var(--color3);
 }
 .btn-main:hover {
+    color: var(--color5);
     background: var(--color3);
 }
 
+#login_submit_button {
+    background: linear-gradient(100deg, var(--color2), var(--color3));
+    border-color: transparent;
+}
+#login_submit_button:hover {
+    color:var(--color2);
+    background: var(--color5);
+    border-color: var(--color3);
+}
 
 .banner
 {
     padding: 3rem 0;
     background: url('../image/header-banner.png') fixed;
+    background-size: contain;
+}
+.bg-hex
+{
+    background: url('../image/bg-hex.jpg') fixed;
+    background-size: cover;
+}
+.postwoman
+{
+    background: url('../image/postwoman.jpg') fixed;
     background-size: contain;
 }
 
@@ -116,7 +143,14 @@
     color: var(--color1);
 }
 
-/* navlink */
+/* TABLE */
+
+.table thead
+{
+    border-radius: 10px !important;
+}
+
+/* NAVBAR */
 
 #navbar .link
 {
@@ -131,7 +165,7 @@
     background: var(--color3);
 }
 
-/* card */
+/* CARD */
 
 .info_link
 {
@@ -148,20 +182,33 @@
     border-bottom: 1px solid var(--color3);
 }
 
-/* pagination */
-#pagination
+/* PAGINATION */
+
+.pagination .active .page-link
 {
-    /* background: var(--bs-dark); */
+    color:var(--color2);
+    background: var(--color5);
+    border:none;
 }
 .page-link
 {
-    /* background: var(--bs-dark); */
+    margin: 0 2px;
+    color: var(--color4);
+    background: var(--color3);
 }
+.page-link:hover
+{
+    color:var(--color3);
+    border-color: var(--color3);
+}
+
+
+/* POST FORM */
 
 #new_post_form #post_description
 {
     resize: vertical;
-    height: 150px;
+    height: 200px;
 }
 
 /* Developer: Mayank Devil | https://mayankdevil.github.io/MayankDevil */

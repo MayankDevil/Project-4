@@ -6,33 +6,23 @@
 
 $(document).ready(function () {
 
-    console.log('script active');
+    console.log('script active')
 
-    function activeSection (section) {
+    $(".alert").show()
+
+    setTimeout(() => {
+        $(".alert").fadeOut()
+    }, 3000)
+
+    
+    
+    
+    setInterval(function () {
         
-        let clicked = section.text().trim().toLowerCase()
-        
-        $("#post_section, #categorie_section, #user_section").hide();
+        $("#timer").text(Date().slice(0,24))
 
-        if (clicked === "post") {
-            $("#post_section").show();
-        } else if (clicked === "categorie") {
-            $("#categorie_section").show();
-        } else if (clicked === "user") {
-            $("#user_section").show();
-        }
-    }
 
-    /* on click button call activesection pass this */
-
-    let navbar_button = $("#navbar button")
-
-    navbar_button.on("click", function () {
-
-        activeSection($(this))
-    })
-
-    activeSection(navbar_button.eq(0)) // default section
+    }, 1000)
     
 })
 
