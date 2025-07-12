@@ -10,7 +10,7 @@ session_start();
 
 # script enforcement
 
-if (!isset($_SESSION['username']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_role'])) {
+if (!isset($_SESSION['username']) || !isset($_SESSION['user_id']) || !($_SESSION['user_role'] === 1)) {
 
     header('Location:logout.php');
     exit('ERROR : 404 | NOT FOUND ');
