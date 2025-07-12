@@ -15,7 +15,6 @@ if (!isset($_SESSION["userename"]) && !isset($_SESSION["user_id"])) {
     header("Location:logout.php");
     exit;
 }
-require("modal.php");
 
 $request_page = isset($_REQUEST['page_num']) ? intval($_REQUEST['page_num']) : 1;
 
@@ -73,20 +72,20 @@ $request_page = isset($_REQUEST['page_num']) ? intval($_REQUEST['page_num']) : 1
 
                                 $control = ($request_page - 1) * $page_data_count;
 
-                                $output = DB_Modal::get_posts($control, $page_data_count);
+                                $output = DB_Modal::get_posts($control, $page_data_count, $_SESSION['user_id'], $_SESSION['user_role']);
 
                                 if ($output && is_array($output)) {
                                     if (count($output) > 0) {
                                         foreach ($output as $row) {
 
                                             echo "<tr class=''>";
-                                            echo "<td class=''>" . $row['id'] . "</td>";
-                                            echo "<td class=''>" . $row['title'] . "</td>";
-                                            echo "<td class=''>" . $row['description'] . "</td>";
-                                            echo "<td class=''>" . $row['created_at'] . "</td>";
-                                            echo "<td class=''>" . 'loadinng' . "</td>";
-                                            echo "<td class=''>" . 'loadinng' . "</td>";
-                                            echo "<td class=''> <a href='#" . $row['id'] . "' class='btn btn-sm btn-dark bi bi-pencil-square'></a> </td>";
+                                            echo "<td class=''>" . $row['post_id'] . "</td>";
+                                            echo "<td class=''>" . $row['post_title'] . "</td>";
+                                            echo "<td class=''>" . $row['post_description'] . "</td>";
+                                            echo "<td class=''>" . $row['post_stamp'] . "</td>";
+                                            echo "<td class=''>" . $row['author_name'] . "</td>";
+                                            echo "<td class=''>" . $row['post_category'] . "</td>";
+                                            echo "<td class=''> <a href='?update_post_id=" . $row['post_id'] . "' class='btn btn-sm btn-outline-dark texts-red borders-red bi bi-pencil-square'></a> </td>";
                                             echo "</tr>";
                                         }
                                     } else {
